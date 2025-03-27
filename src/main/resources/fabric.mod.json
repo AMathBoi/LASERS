@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "lasers",
+	"version": "${version}",
+	"name": "LASERS!",
+	"description": "Have you ever wanted a customizable laser drill in Minecraft?",
+	"authors": [
+		"AMathBoi"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/lasers!",
+		"sources": "https://github.com/AMathBoi/LASERS"
+	},
+	"license": "MIT",
+	"icon": "assets/lasers/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.amathboi.lasers.LASERS"
+		],
+		"fabric-datagen": [
+			"net.amathboi.lasers.LASERSDataGenerator"
+		],
+		"client": [
+			"net.amathboi.lasers.LASERSClient"
+		]
+	},
+	"mixins": [
+		"lasers.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
