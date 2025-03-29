@@ -1,0 +1,1 @@
+This mod adds laser drills to the game. A basic iron tier can be made and be upgraded to all the way up to netherite. Custom upgrades can be added to upgrade slots in the drill. WIP, ideas of the mod will vary.
