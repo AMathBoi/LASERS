@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lasers:block/laser_workstation"
+    }
+  }
+}

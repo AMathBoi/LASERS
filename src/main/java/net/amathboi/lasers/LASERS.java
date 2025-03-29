@@ -1,5 +1,8 @@
 package net.amathboi.lasers;
 
+import net.amathboi.lasers.block.ModBlocks;
+import net.amathboi.lasers.item.ModItemGroups;
+import net.amathboi.lasers.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -11,8 +14,9 @@ public class LASERS implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroups.registerItemGroups();
 
-
-		LOGGER.info("Hello Fabric world!");
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }

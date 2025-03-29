@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "minecraft:block/iron_block",
+    "east": "lasers:block/laser_workstation_side",
+    "north": "lasers:block/laser_workstation_front",
+    "particle": "lasers:block/laser_workstation_front",
+    "south": "lasers:block/laser_workstation_side",
+    "up": "lasers:block/laser_workstation_top",
+    "west": "lasers:block/laser_workstation_front"
+  }
+}

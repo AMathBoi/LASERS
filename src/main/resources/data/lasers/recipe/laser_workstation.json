@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "functional",
+  "key": {
+    "1": {
+      "item": "minecraft:red_dye"
+    },
+    "2": {
+      "item": "minecraft:blue_dye"
+    },
+    "3": {
+      "item": "minecraft:yellow_dye"
+    },
+    "4":{
+      "item": "minecraft:crafting_table"
+    },
+    "5": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "6": {
+      "item": "minecraft:iron_block"
+    },
+    "7": {
+      "item": "minecraft:redstone_block"
+    },
+    "8": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "123",
+    "547",
+    "868"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lasers:laser_workstation"
+  }
+}
