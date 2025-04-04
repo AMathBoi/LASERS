@@ -1,6 +1,7 @@
 package net.amathboi.lasers.block;
 
 import net.amathboi.lasers.LASERS;
+import net.amathboi.lasers.block.custom.LaserWorkstation;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -14,7 +15,7 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
-    public static final Block LASER_WORKBENCH = registerBlock("laser_workstation", new Block(AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.ANVIL)));
+    public static final Block LASER_WORKSTATION = registerBlock("laser_workstation", new LaserWorkstation(AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.STONE).nonOpaque()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
@@ -29,7 +30,7 @@ public class ModBlocks {
         LASERS.LOGGER.info("Registering Mod Blocks for " + LASERS.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
-            entries.add(ModBlocks.LASER_WORKBENCH);
+            entries.add(ModBlocks.LASER_WORKSTATION);
         });
     }
 }

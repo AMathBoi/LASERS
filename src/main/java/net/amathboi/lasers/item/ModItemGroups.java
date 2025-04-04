@@ -14,11 +14,11 @@ public class ModItemGroups {
 
     public static final ItemGroup LASERS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(LASERS.MOD_ID, "laser_drill_mk1"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.LASER_WORKBENCH))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.LASER_WORKSTATION))
                     .displayName(Text.translatable("itemgroup.lasers.lasers_items"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.LASER_DRILL_MK1);
-                        entries.add(ModBlocks.LASER_WORKBENCH);
+                        entries.add(ModBlocks.LASER_WORKSTATION);
                     }).build());
 
     public static void registerItemGroups() {

@@ -1,20 +1,24 @@
-package net.amathboi.lasers.block;
+package net.amathboi.lasers.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.amathboi.lasers.block.entity.LaserWorkstationEntity;
+import net.amathboi.lasers.LASERS;
+import net.amathboi.lasers.block.entity.custom.LaserWorkstationEntity;
 import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,8 +35,9 @@ public class LaserWorkstation extends BlockWithEntity implements BlockEntityProv
         return CODEC;
     }
 
+    @Nullable
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new LaserWorkstationEntity(pos, state);
     }
 
@@ -50,9 +55,18 @@ public class LaserWorkstation extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
-
+        if(world.getBlockEntity(pos) instanceof LaserWorkstationEntity laserWorkstationEntity) {
+            if (!world.isClient()) {
+                player.openHandledScreen(laserWorkstationEntity);
+            }
+        }
         return ItemActionResult.SUCCESS;
     }
+
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
 }
+
 

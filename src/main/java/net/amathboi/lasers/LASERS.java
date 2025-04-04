@@ -1,5 +1,6 @@
 package net.amathboi.lasers;
 
+import net.amathboi.lasers.Screen.ModScreenHandlers;
 import net.amathboi.lasers.block.ModBlocks;
 import net.amathboi.lasers.block.entity.ModBlockEntities;
 import net.amathboi.lasers.item.ModItemGroups;
@@ -21,5 +22,6 @@ public class LASERS implements ModInitializer {
 		ModBlocks.registerModBlocks();
 
 		ModBlockEntities.registerBlockEntities();
+		ModScreenHandlers.registerScreenHandlers();
 	}
 }
