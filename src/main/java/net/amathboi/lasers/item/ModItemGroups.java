@@ -19,6 +19,13 @@ public class ModItemGroups {
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.LASER_DRILL_MK1);
                         entries.add(ModBlocks.LASER_WORKSTATION);
+
+                        entries.add(ModItems.BLANK_UPGRADE);
+                        entries.add(ModItems.EFFICIENCY_UPGRADE);
+                        entries.add(ModItems.ENERGY_STORAGE_MK1);
+                        entries.add(ModItems.HARDNESS_UPGRADE);
+                        entries.add(ModItems.HASTE_UPGRADE);
+                        entries.add(ModItems.SONAR_UPGRADE);
                     }).build());
 
     public static void registerItemGroups() {

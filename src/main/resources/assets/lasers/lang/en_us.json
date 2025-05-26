@@ -1,5 +1,20 @@
 {
   "item.lasers.laser_drill_mk1": "Laser Drill MK1",
+
+  "item.lasers.blank_upgrade": "Blank Upgrade",
+  "item.lasers.efficiency_upgrade": "Efficiency Upgrade",
+  "item.lasers.energy_storage_mk1": "Energy Storage MK1",
+  "item.lasers.hardness_upgrade": "Hardness Upgrade",
+  "item.lasers.haste_upgrade": "Haste Upgrade",
+  "item.lasers.sonar_upgrade": "Sonar Upgrade",
+
   "block.lasers.laser_workstation": "Laser Workstation",
-  "itemgroup.lasers.lasers_items": "LASERS!"
+  "itemgroup.lasers.lasers_items": "LASERS!",
+
+  "tooltip.lasers.shift": "§eShift§r for info",
+  "tooltip.lasers.efficiency_upgrade.shift_down": "Reduces power consumption of the drill",
+  "tooltip.lasers.energy_storage_mk1.shift_down": "First iteration of the energy storage; stores 50kFE",
+  "tooltip.lasers.hardness_upgrade.shift_down": "Allows drilling equivalent to netherite",
+  "tooltip.lasers.haste_upgrade.shift_down": "Increases speed of the drill, but at the cost of increased power consumption",
+  "tooltip.lasers.sonar_upgrade.shift_down": "Uses a percent of energy to scan the nearby area for ores"
 }

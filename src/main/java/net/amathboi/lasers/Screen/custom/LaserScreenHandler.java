@@ -70,10 +70,52 @@ public class LaserScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return null;
+    public ItemStack quickMove(PlayerEntity player, int index) {
+        Slot sourceSlot = this.slots.get(index);
+        if (!sourceSlot.hasStack()) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack sourceStack = sourceSlot.getStack();
+        ItemStack copyOfSourceStack = sourceStack.copy();
+
+        int containerSlotCount = 5;
+
+        if (index < containerSlotCount) {
+            // Moving from container to player inventory
+            if (!this.insertItem(sourceStack, containerSlotCount, this.slots.size(), true)) {
+                return ItemStack.EMPTY;
+            }
+        } else {
+            // Moving from player inventory to container (max 1 item per slot)
+            boolean moved = false;
+            for (int i = 0; i < containerSlotCount; i++) {
+                Slot targetSlot = this.slots.get(i);
+
+                if (!targetSlot.hasStack() && targetSlot.canInsert(sourceStack)) {
+                    // Take one item from source and place it in target
+                    ItemStack oneItem = sourceStack.split(1);
+                    targetSlot.setStack(oneItem);
+                    targetSlot.markDirty();
+                    moved = true;
+                    break;
+                }
+            }
+
+            if (!moved) {
+                return ItemStack.EMPTY;
+            }
+        }
+
+        if (sourceStack.isEmpty()) {
+            sourceSlot.setStack(ItemStack.EMPTY);
+        } else {
+            sourceSlot.markDirty();
+        }
+
+        return copyOfSourceStack;
     }
-    //this is for shift left click, might work on later; rn chrashesb
+    //this is for shift left click, does all items, should be specific to slot
 
     @Override
     public boolean canUse(PlayerEntity player) {
