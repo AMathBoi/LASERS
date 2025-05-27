@@ -3,6 +3,7 @@ package net.amathboi.lasers;
 import net.amathboi.lasers.Screen.ModScreenHandlers;
 import net.amathboi.lasers.block.ModBlocks;
 import net.amathboi.lasers.block.entity.ModBlockEntities;
+import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.item.ModItemGroups;
 import net.amathboi.lasers.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -16,6 +17,7 @@ public class LASERS implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModDataComponentTypes.registerDataComponentTypes();
 		ModItemGroups.registerItemGroups();
 
 		ModItems.registerModItems();

@@ -1,6 +1,7 @@
 package net.amathboi.lasers.item;
 
 import net.amathboi.lasers.LASERS;
+import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.Item;
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class ModItems {
 
-    public static final Item LASER_DRILL_MK1 = registerItem("laser_drill_mk1", new Item(new Item.Settings()));
+    public static final Item LASER_DRILL_MK1 = registerItem("laser_drill_mk1", new DrillItem(new Item.Settings().maxCount(1).component(ModDataComponentTypes.DRILL_UPGRADES, List.<ItemStack>of())));
     public static final Item BLANK_UPGRADE = registerItem("blank_upgrade", new Item(new Item.Settings()));
-    public static final Item EFFICIENCY_UPGRADE = registerItem("efficiency_upgrade", new Item(new Item.Settings()) {
+    public static final Item EFFICIENCY_UPGRADE = registerItem("efficiency_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeType.RED) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
@@ -29,7 +30,7 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item ENERGY_STORAGE_MK1 = registerItem("energy_storage_mk1", new Item(new Item.Settings()) {
+    public static final Item ENERGY_STORAGE_MK1 = registerItem("energy_storage_mk1", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeType.ENERGY) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
@@ -40,7 +41,7 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item HARDNESS_UPGRADE = registerItem("hardness_upgrade", new Item(new Item.Settings()) {
+    public static final Item HARDNESS_UPGRADE = registerItem("hardness_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeType.GRAY) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
@@ -51,7 +52,7 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item HASTE_UPGRADE = registerItem("haste_upgrade", new Item(new Item.Settings()) {
+    public static final Item HASTE_UPGRADE = registerItem("haste_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeType.YELLOW) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
@@ -62,7 +63,7 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
-    public static final Item SONAR_UPGRADE = registerItem("sonar_upgrade", new Item(new Item.Settings()) {
+    public static final Item SONAR_UPGRADE = registerItem("sonar_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeType.BLUE) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
