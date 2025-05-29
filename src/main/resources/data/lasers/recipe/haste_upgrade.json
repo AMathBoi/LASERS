@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "ingredients",
+  "key": {
+    "1": {
+      "item": "minecraft:sugar"
+    },
+    "2": {
+      "item": "minecraft:gold_ingot"
+    },
+    "3": {
+      "item": "lasers:blank_upgrade"
+    },
+    "4":{
+      "item": "minecraft:iron_ingot"
+    },
+    "5": {
+      "item": "minecraft:yellow_dye"
+    },
+    "6": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "212",
+    "434",
+    "656"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lasers:haste_upgrade"
+  }
+}

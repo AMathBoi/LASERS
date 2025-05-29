@@ -2,18 +2,14 @@ package net.amathboi.lasers.component;
 
 import net.amathboi.lasers.LASERS;
 import net.minecraft.component.ComponentType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntFunction;
 import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
 
 public class ModDataComponentTypes {
 

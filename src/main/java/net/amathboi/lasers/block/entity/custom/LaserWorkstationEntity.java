@@ -22,47 +22,11 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static net.amathboi.lasers.Screen.custom.LaserScreenHandler.loadUpgrades;
-import static net.amathboi.lasers.Screen.custom.LaserScreenHandler.storeUpgrades;
-
 public class LaserWorkstationEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(6, ItemStack.EMPTY);
 
     public LaserWorkstationEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.LASER_BE, pos, state);
-    }
-
-    public void onDrillInserted() {
-        ItemStack drill = inventory.get(0);
-        List<ItemStack> upgrades = loadUpgrades(drill);
-
-        for (int i = 0; i < 5; i++) {
-            if (i < upgrades.size()) {
-                inventory.set(i + 1, upgrades.get(i).copy());
-            } else {
-                inventory.set(i + 1, ItemStack.EMPTY);
-            }
-        }
-        markDirty();
-    }
-
-    // Called before drill is removed from slot 0
-    public void onDrillRemoved() {
-        ItemStack drill = inventory.get(0);
-        List<ItemStack> upgrades = new ArrayList<>();
-
-        for (int i = 1; i <= 5; i++) {
-            if (!inventory.get(i).isEmpty()) {
-                upgrades.add(inventory.get(i).copy());
-                inventory.set(i, ItemStack.EMPTY);
-            }
-        }
-
-        storeUpgrades(drill, upgrades);
-        markDirty();
     }
 
     @Override

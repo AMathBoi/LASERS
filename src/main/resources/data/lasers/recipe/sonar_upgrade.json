@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "ingredients",
+  "key": {
+    "1": {
+      "item": "minecraft:blaze_rod"
+    },
+    "2": {
+      "item": "minecraft:gold_ingot"
+    },
+    "3": {
+      "item": "lasers:blank_upgrade"
+    },
+    "4":{
+      "item": "minecraft:diamond_block"
+    },
+    "5": {
+      "item": "minecraft:diamond"
+    },
+    "6": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "212",
+    "535",
+    "646"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lasers:sonar_upgrade"
+  }
+}

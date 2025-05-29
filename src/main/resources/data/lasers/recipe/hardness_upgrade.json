@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "ingredients",
+  "key": {
+    "1": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "2": {
+      "item": "minecraft:iron_block"
+    },
+    "3": {
+      "item": "minecraft:diamond"
+    },
+    "4":{
+      "item": "minecraft:iron_ingot"
+    },
+    "5": {
+      "item": "minecraft:obsidian"
+    },
+    "6": {
+      "item": "lasers:blank_upgrade"
+    }
+  },
+  "pattern": [
+    "312",
+    "461",
+    "543"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lasers:hardness_upgrade"
+  }
+}

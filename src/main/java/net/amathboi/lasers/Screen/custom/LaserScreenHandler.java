@@ -1,7 +1,6 @@
 package net.amathboi.lasers.Screen.custom;
 
 import net.amathboi.lasers.Screen.ModScreenHandlers;
-import net.amathboi.lasers.block.entity.custom.LaserWorkstationEntity;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.item.DrillItem;
 import net.amathboi.lasers.item.ModItems;
@@ -11,7 +10,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
@@ -36,7 +34,6 @@ public class LaserScreenHandler extends ScreenHandler {
             case YELLOW -> FIRST_UPGRADE_SLOT + 2;
             case GRAY -> FIRST_UPGRADE_SLOT + 3;
             case ENERGY -> FIRST_UPGRADE_SLOT + 4;
-            default -> -1;
         };
     }
 
