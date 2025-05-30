@@ -1,5 +1,6 @@
 package net.amathboi.lasers.item;
 
+import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -94,8 +95,17 @@ public class DrillItem extends PickaxeItem {
         return true;
     }
 
+    private boolean hasHasteUpgrade(ItemStack stack) {
+        return LaserScreenHandler.loadUpgrades(stack).stream()
+                .anyMatch(up -> up.getItem() instanceof UpgradeItem ui
+                        && ui.getUpgradeSpecific() == UpgradeSpecific.HASTE);
+    }
+
     @Override
     public float getMiningSpeed(ItemStack stack, BlockState state) {
+        if (hasHasteUpgrade(stack)) {
+            return ModToolMaterials.LASER_MK1.getMiningSpeedMultiplier() * 1.5f;
+        }
         return ModToolMaterials.LASER_MK1.getMiningSpeedMultiplier();
     }
 }
