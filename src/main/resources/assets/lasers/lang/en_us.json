@@ -15,7 +15,7 @@
   "tooltip.lasers.efficiency_upgrade.shift_down": "Reduces power consumption of the drill",
   "tooltip.lasers.energy_storage_mk1.shift_down": "First iteration of the energy storage; stores 50kFE",
   "tooltip.lasers.hardness_upgrade.shift_down": "Allows drilling equivalent to netherite",
-  "tooltip.lasers.haste_upgrade.shift_down": "Increases speed of the drill, but at the cost of increased power consumption",
+  "tooltip.lasers.haste_upgrade.shift_down": "Increases speed of the drill",
   "tooltip.lasers.sonar_upgrade.shift_down": "Uses a percent of energy to scan the nearby area for ores",
   "tooltip.lasers.drill_upgrades": "Current Upgrades:"
 }

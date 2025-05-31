@@ -4,6 +4,7 @@ import net.amathboi.lasers.Screen.ModScreenHandlers;
 import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.amathboi.lasers.block.ModBlocks;
 import net.amathboi.lasers.block.entity.ModBlockEntities;
+import net.amathboi.lasers.block.entity.custom.LaserWorkstationEntity;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.item.*;
 import net.amathboi.lasers.util.ModTags;
@@ -20,6 +21,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import team.reborn.energy.api.EnergyStorage;
 
 public class LASERS implements ModInitializer {
 	public static final String MOD_ID = "lasers";
@@ -60,5 +62,11 @@ public class LASERS implements ModInitializer {
 			}
 			return true;
 		});
+
+		EnergyStorage.SIDED.registerForBlockEntities(
+				(be, direction) -> ((LaserWorkstationEntity) be).energyStorage,
+				ModBlockEntities.LASER_BE
+		);
 	}
 }
+

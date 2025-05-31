@@ -19,7 +19,7 @@ public class ModItems {
             new DrillItem(
                     ModToolMaterials.LASER_MK1,
                     new Item.Settings().component(ModDataComponentTypes.DRILL_UPGRADES, List.<ItemStack>of()).attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.LASER_MK1,
-                                    3, -2.8f))));
+                                    3, -2.8f)).component(ModDataComponentTypes.BATTERY, 0L)));
 
     public static final Item BLANK_UPGRADE = registerItem("blank_upgrade", new Item(new Item.Settings()));
     public static final Item EFFICIENCY_UPGRADE = registerItem("efficiency_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.EFFICIENCY, UpgradeType.RED) {

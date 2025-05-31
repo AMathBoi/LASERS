@@ -1,6 +1,7 @@
 package net.amathboi.lasers.Screen.custom;
 
 import net.amathboi.lasers.Screen.ModScreenHandlers;
+import net.amathboi.lasers.block.entity.custom.LaserWorkstationEntity;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.item.DrillItem;
 import net.amathboi.lasers.item.ModItems;
@@ -39,7 +40,12 @@ public class LaserScreenHandler extends ScreenHandler {
 
     public LaserScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
         super(ModScreenHandlers.LASER_SCREEN_HANDLER, syncId);
-        this.inventory = ((Inventory) blockEntity);
+
+        if (!(blockEntity instanceof LaserWorkstationEntity laserWorkstationEntity)) {
+            throw new IllegalStateException("Expected LaserWorkstationEntity at screen handler position");
+        }
+
+        this.inventory = laserWorkstationEntity;
 
         //drill
         this.addSlot(new Slot(inventory, 0, 80, 32) {
@@ -101,7 +107,6 @@ public class LaserScreenHandler extends ScreenHandler {
                     }
                 }
             }
-
         });
         //red
         this.addSlot(new Slot(inventory, 1, 8, 48) {

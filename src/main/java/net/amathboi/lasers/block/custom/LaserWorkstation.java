@@ -7,6 +7,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -61,6 +63,21 @@ public class LaserWorkstation extends BlockWithEntity implements BlockEntityProv
     @Override
     protected BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            World world,
+            BlockState state,
+            BlockEntityType<T> type
+    ) {
+        if (world.isClient) return null;
+
+        return (world1, pos, state1, entity) -> {
+            if (entity instanceof LaserWorkstationEntity lwe) {
+                lwe.tick(world1, pos, state1);
+            }
+        };
     }
 }
 
