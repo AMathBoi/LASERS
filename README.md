@@ -1,12 +1,9 @@
 (WIP) This mod adds laser drills to the game. A basic iron tier can be made and be upgraded to all the way up to netherite. Custom upgrades can be added to upgrade slots in the drill.
 
 ----bugs----
- - items already in workstation get overriden
- - index error with gray and yellow slots
- - fix shift clicking for energy storage
- - shift click bypasses workstation logic
+ - none that I know of :)
 
-----alpha 0.1---- (current)
+----alpha 0.1---- 
  - added drill, upgrades, and workstation
    - drill mk1, drills stuff
    - hardness, upgrades mining level to diamond/netherite(default iron)
@@ -22,12 +19,21 @@
 
  - added FE to drill and workstation
 
-----alpha 0.2----
- - fix bugs
+----alpha 0.2---- (current)
+ - fixed bugs
+   - items already in workstation get overriden
+   - index error with gray and yellow slots
+   - fix shift clicking for energy storage
+   - shift click bypasses workstation logic
+   - battery doesn't reset when upgrade is removed
+
+ - added FE bar in gui
+
+----alpha 0.3----
  - add functionality to sonar
  - update drill model
 
 
-----alpha 0.3----
+----alpha 0.4----
  - add more upgrades
  - add REI
