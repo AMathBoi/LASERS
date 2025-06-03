@@ -18,7 +18,7 @@ public class DrillEnergyStorage extends SimpleEnergyStorage {
     public DrillEnergyStorage(ItemStack stack) {
         super(determineCapacity(stack), MAX_INSERT, MAX_EXTRACT);
         this.stack  = stack;
-        this.amount = getStoredEnergy(stack);
+        this.amount = Math.min(getStoredEnergy(stack), capacity);
     }
 
     private static long determineCapacity(ItemStack stack) {

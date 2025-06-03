@@ -93,7 +93,5 @@ public class LaserWorkstationEntity extends BlockEntity implements ImplementedIn
                 if (accepted > 0) tx.commit();
             }
         }
-
-
     }
 }

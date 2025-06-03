@@ -112,6 +112,9 @@ public class LaserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 1, 8, 48) {
             @Override
             public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
                 if (stack.getItem() instanceof UpgradeItem upgradeItem) {
                     return upgradeItem.getUpgradeType() == UpgradeType.RED;
                 }
@@ -133,29 +136,11 @@ public class LaserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 2, 44, 20) {
             @Override
             public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
                 if (stack.getItem() instanceof UpgradeItem upgradeItem) {
                     return upgradeItem.getUpgradeType() == UpgradeType.BLUE;
-                }
-                return false;
-            }
-
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
-        //gray
-        this.addSlot(new Slot(inventory, 4, 44, 48) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.GRAY;
                 }
                 return false;
             }
@@ -175,8 +160,35 @@ public class LaserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 3, 8, 20) {
             @Override
             public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
                 if (stack.getItem() instanceof UpgradeItem upgradeItem) {
                     return upgradeItem.getUpgradeType() == UpgradeType.YELLOW;
+                }
+                return false;
+            }
+
+            @Override
+            public void setStack(ItemStack stack) {
+                super.setStack(stack);
+                blockEntity.markDirty();
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
+        });
+        //gray
+        this.addSlot(new Slot(inventory, 4, 44, 48) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
+                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
+                    return upgradeItem.getUpgradeType() == UpgradeType.GRAY;
                 }
                 return false;
             }
@@ -196,6 +208,9 @@ public class LaserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 5, 134, 56) {
             @Override
             public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
                 if (stack.getItem() instanceof UpgradeItem upgradeItem) {
                     return upgradeItem.getUpgradeType() == UpgradeType.ENERGY;
                 }
@@ -228,7 +243,19 @@ public class LaserScreenHandler extends ScreenHandler {
         ItemStack sourceStack = sourceSlot.getStack();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        int containerSlotCount = 5;
+        int containerSlotCount = 6;
+
+        if (index == 0 && sourceStack.getItem() instanceof DrillItem) {
+            List<ItemStack> upgrades = new ArrayList<>();
+            for (int i = 1; i < containerSlotCount; i++) {
+                ItemStack slotStack = this.slots.get(i).getStack();
+                if (!slotStack.isEmpty()) {
+                    upgrades.add(slotStack.copy());
+                    this.slots.get(i).setStack(ItemStack.EMPTY);
+                }
+            }
+            storeUpgrades(sourceStack, upgrades);
+        }
 
         if (index < containerSlotCount) {
             if (!this.insertItem(sourceStack, containerSlotCount, this.slots.size(), true)) {
@@ -247,7 +274,6 @@ public class LaserScreenHandler extends ScreenHandler {
                     break;
                 }
             }
-
             if (!moved) {
                 return ItemStack.EMPTY;
             }
