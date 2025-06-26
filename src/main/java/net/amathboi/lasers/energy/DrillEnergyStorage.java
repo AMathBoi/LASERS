@@ -11,7 +11,7 @@ public class DrillEnergyStorage extends SimpleEnergyStorage {
     private final ItemStack stack;
 
     private static final long BASE_CAPACITY   = 0L;
-    private static final long UPGRADED_MK1    = 50_000L;
+    private static final long UPGRADED_MK1    = 5_000L;
     private static final long MAX_INSERT      = 1_000L;
     private static final long MAX_EXTRACT     = 1_000L;   // ← allow extraction
 

@@ -30,6 +30,11 @@ public class DrillItem extends PickaxeItem {
     }
 
     @Override
+    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.setDamage(0);
+    }
+
+    @Override
     public int getMaxCount() {
         return 1;
     }
@@ -57,7 +62,7 @@ public class DrillItem extends PickaxeItem {
 
     private static long determineCapacity(ItemStack stack) {
         if (hasEnergyMK1(stack)) {
-            return 50_000L;
+            return 5_000L;
         }
         return 0L;
     }
