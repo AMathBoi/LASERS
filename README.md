@@ -19,7 +19,7 @@
 
  - added FE to drill and workstation
 
-----alpha 0.2---- (current)
+----alpha 0.2----
  - fixed bugs
    - items already in workstation get overriden
    - index error with gray and yellow slots
@@ -29,11 +29,15 @@
 
  - added FE bar in gui
 
-----alpha 0.3----
- - add functionality to sonar
- - update drill model
+----alpha 0.3---- (current)
+ - fixed bugs
+   - drill doesn't break when attacking mobs
+   
+ - updated drill model
 
+ - added info button 
 
 ----alpha 0.4----
+ - add functionality to sonar
  - add more upgrades
  - add REI
