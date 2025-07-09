@@ -37,6 +37,8 @@
 
  - added info button 
 
+ - reverted energy storage mk1 to 5k FE (old drills will have 50k FE until used)
+
 ----alpha 0.4----
  - add functionality to sonar
  - add more upgrades
