@@ -19,5 +19,8 @@
   "tooltip.lasers.sonar_upgrade.shift_down": "(WIP, not yet functional) Uses a percent of energy to scan the nearby area for ores",
   "tooltip.lasers.drill_upgrades": "Current Upgrades:",
 
-  "gui.lasers.laser_workstation.info_button.tooltip": "Info"
+  "gui.lasers.laser_workstation.info_button.tooltip": "Info",
+
+  "key.lasers.sonar": "Sonar",
+  "category.lasers.main": "LASERS!"
 }

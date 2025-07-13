@@ -165,6 +165,12 @@ public class DrillItem extends PickaxeItem {
                         && ui.getUpgradeSpecific() == UpgradeSpecific.HASTE);
     }
 
+    private boolean hasSonarUpgrade(ItemStack stack) {
+        return LaserScreenHandler.loadUpgrades(stack).stream()
+                .anyMatch(up -> up.getItem() instanceof UpgradeItem ui
+                        && ui.getUpgradeSpecific() == UpgradeSpecific.SONAR);
+    }
+
     @Override
     public float getMiningSpeed(ItemStack stack, BlockState state) {
         DrillEnergyStorage storage = new DrillEnergyStorage(stack);
