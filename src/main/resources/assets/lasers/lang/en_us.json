@@ -16,7 +16,9 @@
   "tooltip.lasers.energy_storage_mk1.shift_down": "First iteration of the energy storage; stores 50kFE",
   "tooltip.lasers.hardness_upgrade.shift_down": "Allows drilling equivalent to netherite",
   "tooltip.lasers.haste_upgrade.shift_down": "Increases speed of the drill",
-  "tooltip.lasers.sonar_upgrade.shift_down": "(WIP, not yet functional) Uses a percent of energy to scan the nearby area for ores",
+  "tooltip.lasers.sonar_upgrade.shift_down": "Uses 500 FE to scan a 16 block area for ores",
+  "tooltip.lasers.sonar_upgrade.shift_down2": "Crosshair must be aligned with sonar for accurate positioning",
+  "tooltip.lasers.sonar_key": "Press %s to activate sonar",
   "tooltip.lasers.drill_upgrades": "Current Upgrades:",
 
   "gui.lasers.laser_workstation.info_button.tooltip": "Info",

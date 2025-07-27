@@ -7,32 +7,19 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -165,10 +152,28 @@ public class DrillItem extends PickaxeItem {
                         && ui.getUpgradeSpecific() == UpgradeSpecific.HASTE);
     }
 
-    private boolean hasSonarUpgrade(ItemStack stack) {
+    public boolean hasSonarUpgrade(ItemStack stack) {
         return LaserScreenHandler.loadUpgrades(stack).stream()
                 .anyMatch(up -> up.getItem() instanceof UpgradeItem ui
                         && ui.getUpgradeSpecific() == UpgradeSpecific.SONAR);
+    }
+
+    public boolean tryActivateSonar(ItemStack stack, PlayerEntity player) {
+        if (!hasSonarUpgrade(stack)) {
+            return false;
+        }
+        
+        DrillEnergyStorage storage = new DrillEnergyStorage(stack);
+        if (storage.amount >= 500) {
+            try (Transaction tx = Transaction.openOuter()) {
+                long extracted = storage.extract(500, tx);
+                if (extracted == 500) {
+                    tx.commit();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

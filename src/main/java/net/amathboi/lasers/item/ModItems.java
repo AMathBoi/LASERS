@@ -1,6 +1,7 @@
 package net.amathboi.lasers.item;
 
 import net.amathboi.lasers.LASERS;
+import net.amathboi.lasers.client.ModKeyBindings;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,6 +10,7 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -71,6 +73,9 @@ public class ModItems {
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
             if(Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.sonar_upgrade.shift_down"));
+                tooltip.add(Text.translatable("tooltip.lasers.sonar_upgrade.shift_down2"));
+                Text keyText = ModKeyBindings.sonarKey.getBoundKeyLocalizedText();
+                tooltip.add(Text.translatable("tooltip.lasers.sonar_key", keyText).formatted(Formatting.GRAY));
             } else {
                 tooltip.add(Text.translatable("tooltip.lasers.shift"));
             }
