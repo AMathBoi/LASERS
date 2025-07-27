@@ -44,6 +44,7 @@
 
  - added laser beam(particles)
 
- - add functionality to sonar
+ - added functionality to sonar
+
  - add more upgrades
  - add REI
