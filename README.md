@@ -40,11 +40,13 @@
  - reverted energy storage mk1 to 5k FE (old drills will have 50k FE until used)
 
 ----alpha 0.4----
- - removed mining animation
+ - fixed bugs
+   - no longer requires the full tech reborn mod
 
- - added laser beam(particles)
+ - improved visuals
+   - removed mining animation
+   - added laser beam(particles)
 
  - added functionality to sonar
 
- - add more upgrades
- - add REI
+ - added more upgrades
