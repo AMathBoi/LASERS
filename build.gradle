@@ -13,7 +13,11 @@ base {
 repositories {
 	maven {
 		name = "Fabric"
-		url  = "https://maven.fabricmc.net/"
+		url = "https://maven.fabricmc.net/"
+	}
+	maven {
+		name = "TeamReborn"
+		url = "https://maven.team-reborn.tech/release/"
 	}
 }
 
@@ -30,10 +34,11 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	//modImplementation "net.fabricmc.fabric-api:fabric-data-attachment-api-v1:${project.fabric_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "teamreborn:energy:${project.energy_version}"
+	// Team Reborn Energy (standalone)
+	modApi "teamreborn:energy:${project.energy_version}"
+	include "teamreborn:energy:${project.energy_version}"
 
 	implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
 	implementation(include("io.github.llamalad7:mixinextras-fabric:0.3.5"))

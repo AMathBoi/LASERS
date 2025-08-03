@@ -1,26 +1,39 @@
 package net.amathboi.lasers.item;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.energy.DrillEnergyStorage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrillItem extends PickaxeItem {
@@ -146,6 +159,13 @@ public class DrillItem extends PickaxeItem {
         return true;
     }
 
+
+    public boolean hasFortuneUpgrade(ItemStack stack) {
+        return LaserScreenHandler.loadUpgrades(stack).stream()
+                .anyMatch(up -> up.getItem() instanceof UpgradeItem ui
+                        && ui.getUpgradeSpecific() == UpgradeSpecific.FORTUNE);
+    }
+
     private boolean hasHasteUpgrade(ItemStack stack) {
         return LaserScreenHandler.loadUpgrades(stack).stream()
                 .anyMatch(up -> up.getItem() instanceof UpgradeItem ui
@@ -162,7 +182,7 @@ public class DrillItem extends PickaxeItem {
         if (!hasSonarUpgrade(stack)) {
             return false;
         }
-        
+
         DrillEnergyStorage storage = new DrillEnergyStorage(stack);
         if (storage.amount >= 500) {
             try (Transaction tx = Transaction.openOuter()) {

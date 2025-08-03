@@ -7,6 +7,7 @@ public enum UpgradeSpecific {
     SONAR(BLUE),
     EFFICIENCY(RED),
     HASTE(YELLOW),
+    FORTUNE(YELLOW),
     BATTERY_MK1(ENERGY);
 
     private final UpgradeType upgradeType;

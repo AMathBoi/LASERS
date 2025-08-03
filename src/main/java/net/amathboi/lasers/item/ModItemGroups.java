@@ -26,6 +26,7 @@ public class ModItemGroups {
                         entries.add(ModItems.HARDNESS_UPGRADE);
                         entries.add(ModItems.HASTE_UPGRADE);
                         entries.add(ModItems.SONAR_UPGRADE);
+                        entries.add(ModItems.FORTUNE_UPGRADE);
                     }).build());
 
     public static void registerItemGroups() {

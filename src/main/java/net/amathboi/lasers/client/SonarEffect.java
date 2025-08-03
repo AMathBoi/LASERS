@@ -25,7 +25,7 @@ public class SonarEffect {
     private static final int RANGE = 16;
     private static final Map<BlockPos, Block> foundOres = new HashMap<>();
     private static long lastScanTime = 0;
-    private static final long SCAN_COOLDOWN_MS = 1000;
+    private static final long SCAN_COOLDOWN_MS = 2500;
     private static long effectStartTime = 0;
     private static final long EFFECT_DURATION_MS = 10000;
 

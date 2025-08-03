@@ -82,6 +82,17 @@ public class ModItems {
             super.appendTooltip(stack, context, tooltip, type);
         }
     });
+    public static final Item FORTUNE_UPGRADE = registerItem("fortune_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.FORTUNE, UpgradeType.YELLOW) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            if (Screen.hasShiftDown()) {
+                tooltip.add(Text.translatable("tooltip.lasers.fortune_upgrade"));
+            } else {
+                tooltip.add(Text.translatable("tooltip.lasers.shift"));
+            }
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(LASERS.MOD_ID, name), item);
@@ -100,6 +111,7 @@ public class ModItems {
             entries.add(HARDNESS_UPGRADE);
             entries.add(HASTE_UPGRADE);
             entries.add(SONAR_UPGRADE);
+            entries.add(FORTUNE_UPGRADE);
         });
     }
 }

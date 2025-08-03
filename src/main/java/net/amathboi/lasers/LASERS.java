@@ -67,6 +67,8 @@ public class LASERS implements ModInitializer {
 				(be, direction) -> ((LaserWorkstationEntity) be).energyStorage,
 				ModBlockEntities.LASER_BE
 		);
+
+		DrillEvents.register();
 	}
 }
 
