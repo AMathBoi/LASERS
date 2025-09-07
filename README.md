@@ -39,5 +39,15 @@
  - added more upgrades
 
 ----release 1.0----
- - add more upgrades?
- - improve overall visuals
+ - Drill
+   - Improve model
+   - Add animation
+   - Make laser beam better
+ - Workstation
+   - Improve GUI
+   - Reworked drill upgrade(upgrades immediately apply when inserted)
+ - Upgrades
+   - Make sonar look better
+ - Testing
+   - General bug testing
+   - Check compatibility with other mods/energy
