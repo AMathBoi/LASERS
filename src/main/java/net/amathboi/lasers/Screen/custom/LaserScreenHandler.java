@@ -38,6 +38,24 @@ public class LaserScreenHandler extends ScreenHandler {
         };
     }
 
+    private void updateDrillUpgrades() {
+        ItemStack drillStack = inventory.getStack(0);
+        if (drillStack.getItem() instanceof DrillItem) {
+            List<ItemStack> upgrades = new ArrayList<>();
+            for (int i = 1; i <= 5; i++) {
+                ItemStack upgrade = inventory.getStack(i);
+                if (!upgrade.isEmpty()) {
+                    upgrades.add(upgrade.copy());
+                }
+            }
+            storeUpgrades(drillStack, upgrades);
+            // Mark the block entity as dirty to save changes
+            if (inventory instanceof LaserWorkstationEntity workstation) {
+                workstation.markDirty();
+            }
+        }
+    }
+
     public LaserScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
         super(ModScreenHandlers.LASER_SCREEN_HANDLER, syncId);
 
@@ -51,19 +69,11 @@ public class LaserScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 0, 80, 32) {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                super.onTakeItem(player, stack);
-
-                if (!stack.isEmpty() && stack.getItem() instanceof DrillItem) {
-                    List<ItemStack> upgrades = new ArrayList<>();
-                    for (int i = 1; i <= 5; i++) {
-                        ItemStack slotStack = inventory.getStack(i);
-                        if (!slotStack.isEmpty()) {
-                            upgrades.add(slotStack.copy());
-                            inventory.setStack(i, ItemStack.EMPTY);
-                        }
-                    }
-                    storeUpgrades(stack, upgrades);
+                // Clear all upgrade slots when drill is taken
+                for (int i = 1; i <= 5; i++) {
+                    inventory.setStack(i, ItemStack.EMPTY);
                 }
+                super.onTakeItem(player, stack);
             }
 
             @Override
@@ -99,6 +109,7 @@ public class LaserScreenHandler extends ScreenHandler {
                         }
                     }
                 } else if (removed && old.getItem() instanceof DrillItem) {
+                    // Clear all upgrade slots when drill is removed
                     for (UpgradeType type : UpgradeType.values()) {
                         int slotIndex = LaserScreenHandler.getSlotIndexForUpgradeType(type);
                         if (slotIndex >= 0) {
@@ -108,184 +119,128 @@ public class LaserScreenHandler extends ScreenHandler {
                 }
             }
         });
-        //red
-        this.addSlot(new Slot(inventory, 1, 8, 48) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
-                    return false;
-                }
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.RED;
-                }
-                return false;
-            }
 
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
-        //blue
-        this.addSlot(new Slot(inventory, 2, 44, 20) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
-                    return false;
-                }
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.BLUE;
-                }
-                return false;
-            }
-
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
-        //yellow
-        this.addSlot(new Slot(inventory, 3, 8, 20) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
-                    return false;
-                }
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.YELLOW;
-                }
-                return false;
-            }
-
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
-        //gray
-        this.addSlot(new Slot(inventory, 4, 44, 48) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
-                    return false;
-                }
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.GRAY;
-                }
-                return false;
-            }
-
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
-        //battery
-        this.addSlot(new Slot(inventory, 5, 134, 56) {
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
-                    return false;
-                }
-                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
-                    return upgradeItem.getUpgradeType() == UpgradeType.ENERGY;
-                }
-                return false;
-            }
-
-            @Override
-            public void setStack(ItemStack stack) {
-                super.setStack(stack);
-                blockEntity.markDirty();
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-        });
+        // Create upgrade slots using the helper method with correct indices and coordinates
+        this.addSlot(createUpgradeSlot(1, 8, 48, UpgradeType.RED));     // red - index 1 at (8, 48)
+        this.addSlot(createUpgradeSlot(2, 44, 20, UpgradeType.BLUE));   // blue - index 2 at (44, 20)
+        this.addSlot(createUpgradeSlot(3, 8, 20, UpgradeType.YELLOW));  // yellow - index 3 at (8, 20)
+        this.addSlot(createUpgradeSlot(4, 44, 48, UpgradeType.GRAY));   // gray - index 4 at (44, 48)
+        this.addSlot(createUpgradeSlot(5, 134, 56, UpgradeType.ENERGY)); // energy - index 5 at (134, 56)
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
     }
 
-    @Override
-    public ItemStack quickMove(PlayerEntity player, int index) {
-        Slot sourceSlot = this.slots.get(index);
-        if (!sourceSlot.hasStack()) {
-            return ItemStack.EMPTY;
-        }
+    private Slot createUpgradeSlot(int index, int x, int y, UpgradeType type) {
+        return new Slot(inventory, index, x, y) {
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                if (!(inventory.getStack(0).getItem() instanceof DrillItem)) {
+                    return false;
+                }
+                if (stack.getItem() instanceof UpgradeItem upgradeItem) {
+                    return upgradeItem.getUpgradeType() == type;
+                }
+                return false;
+            }
 
-        ItemStack sourceStack = sourceSlot.getStack();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        int containerSlotCount = 6;
-
-        if (index == 0 && sourceStack.getItem() instanceof DrillItem) {
-            List<ItemStack> upgrades = new ArrayList<>();
-            for (int i = 1; i < containerSlotCount; i++) {
-                ItemStack slotStack = this.slots.get(i).getStack();
-                if (!slotStack.isEmpty()) {
-                    upgrades.add(slotStack.copy());
-                    this.slots.get(i).setStack(ItemStack.EMPTY);
+            @Override
+            public void setStack(ItemStack stack) {
+                ItemStack oldStack = this.getStack().copy();
+                super.setStack(stack);
+                
+                // If the stack changed (either inserted or removed an upgrade)
+                if (!ItemStack.areEqual(oldStack, stack)) {
+                    updateDrillUpgrades();
+                    inventory.markDirty();
                 }
             }
-            storeUpgrades(sourceStack, upgrades);
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
+            }
+
+            @Override
+            public ItemStack takeStack(int amount) {
+                ItemStack stack = super.takeStack(amount);
+                if (!stack.isEmpty()) {
+                    updateDrillUpgrades();
+                    inventory.markDirty();
+                }
+                return stack;
+            }
+        };
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int index) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        if (!slot.hasStack()) {
+            return itemStack;
         }
 
-        if (index < containerSlotCount) {
+        ItemStack sourceStack = slot.getStack();
+        itemStack = sourceStack.copy();
+        int containerSlotCount = 6; // Drill slot + 5 upgrade slots
+
+        // If clicking on upgrade slots (1-5)
+        if (index > 0 && index < containerSlotCount) {
+            // Try to move to player inventory
             if (!this.insertItem(sourceStack, containerSlotCount, this.slots.size(), true)) {
                 return ItemStack.EMPTY;
             }
-        } else {
-            boolean moved = false;
-            for (int i = 0; i < containerSlotCount; i++) {
-                Slot targetSlot = this.slots.get(i);
-
-                if (!targetSlot.hasStack() && targetSlot.canInsert(sourceStack)) {
-                    ItemStack oneItem = sourceStack.split(1);
-                    targetSlot.setStack(oneItem);
-                    targetSlot.markDirty();
-                    moved = true;
-                    break;
+            slot.onQuickTransfer(sourceStack, itemStack);
+            updateDrillUpgrades(); // Update drill's NBT after removing upgrade
+        } 
+        // If clicking on drill slot (0)
+        else if (index == 0) {
+            // Clear upgrades first
+            for (int i = 1; i < containerSlotCount; i++) {
+                inventory.setStack(i, ItemStack.EMPTY);
+            }
+            // Then move the drill
+            if (!this.insertItem(sourceStack, containerSlotCount, this.slots.size(), true)) {
+                return ItemStack.EMPTY;
+            }
+            slot.onQuickTransfer(sourceStack, itemStack);
+        }
+        // If clicking in player inventory
+        else if (index >= containerSlotCount) {
+            // If it's a drill, try to insert into drill slot
+            if (sourceStack.getItem() instanceof DrillItem) {
+                if (!this.insertItem(sourceStack, 0, 1, false)) {
+                    return ItemStack.EMPTY;
                 }
             }
-            if (!moved) {
-                return ItemStack.EMPTY;
+            // If it's an upgrade, try to insert into appropriate upgrade slot
+            else if (sourceStack.getItem() instanceof UpgradeItem upgradeItem) {
+                int slotIndex = getSlotIndexForUpgradeType(upgradeItem.getUpgradeType());
+                if (slotIndex > 0 && !this.insertItem(sourceStack, slotIndex, slotIndex + 1, false)) {
+                    return ItemStack.EMPTY;
+                }
+                updateDrillUpgrades(); // Update drill's NBT after adding upgrade
+            }
+            // For other items, try to insert into hotbar or main inventory
+            else {
+                if (index < this.slots.size() - 9) {
+                    if (!this.insertItem(sourceStack, this.slots.size() - 9, this.slots.size(), false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (!this.insertItem(sourceStack, containerSlotCount, this.slots.size() - 9, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
         }
 
         if (sourceStack.isEmpty()) {
-            sourceSlot.setStack(ItemStack.EMPTY);
+            slot.setStack(ItemStack.EMPTY);
         } else {
-            sourceSlot.markDirty();
+            slot.markDirty();
         }
 
-        return copyOfSourceStack;
+        return itemStack;
     }
 
     @Override

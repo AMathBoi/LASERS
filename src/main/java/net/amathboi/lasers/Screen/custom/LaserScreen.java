@@ -46,10 +46,8 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
             Text.literal("§6§lLaser Workstation Guide"),
             Text.literal("1. Place drill in the middle slot"),
             Text.literal("2. Add battery(required)"),
-            Text.literal("3. Remove the drill to"),
-            Text.literal("   implement upgrades"),
-            Text.literal("4. Different upgrades provide"),
-            Text.literal("   different benefits"),
+            Text.literal("3. Add Upgrades"),
+            Text.literal("4. Connect to energy source"),
             Text.literal(""),
             Text.literal("§7Click the ? to close")
     );
