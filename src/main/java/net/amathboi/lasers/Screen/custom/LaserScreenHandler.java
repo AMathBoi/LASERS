@@ -66,7 +66,7 @@ public class LaserScreenHandler extends ScreenHandler {
         this.inventory = laserWorkstationEntity;
 
         //drill
-        this.addSlot(new Slot(inventory, 0, 80, 32) {
+        this.addSlot(new Slot(inventory, 0, 60, 34) {
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
                 // Clear all upgrade slots when drill is taken
@@ -122,10 +122,10 @@ public class LaserScreenHandler extends ScreenHandler {
 
         // Create upgrade slots using the helper method with correct indices and coordinates
         this.addSlot(createUpgradeSlot(1, 8, 48, UpgradeType.RED));     // red - index 1 at (8, 48)
-        this.addSlot(createUpgradeSlot(2, 44, 20, UpgradeType.BLUE));   // blue - index 2 at (44, 20)
+        this.addSlot(createUpgradeSlot(2, 112, 20, UpgradeType.BLUE));   // blue - index 2 at (44, 20)
         this.addSlot(createUpgradeSlot(3, 8, 20, UpgradeType.YELLOW));  // yellow - index 3 at (8, 20)
-        this.addSlot(createUpgradeSlot(4, 44, 48, UpgradeType.GRAY));   // gray - index 4 at (44, 48)
-        this.addSlot(createUpgradeSlot(5, 134, 56, UpgradeType.ENERGY)); // energy - index 5 at (134, 56)
+        this.addSlot(createUpgradeSlot(4, 112, 48, UpgradeType.GRAY));   // gray - index 4 at (44, 48)
+        this.addSlot(createUpgradeSlot(5, 138, 56, UpgradeType.ENERGY)); // energy - index 5 at (134, 56)
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

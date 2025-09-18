@@ -28,7 +28,8 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
     private static final int BACKGROUND_HEIGHT = 166;
 
     private static final int BAR_WIDTH  = 5;
-    private static final int BAR_HEIGHT = 64;
+    private static final int BAR_TEXTURE_HEIGHT = 64;
+    private static final int BAR_RENDER_HEIGHT = 16;
 
     private static final int BAR_X = 163;
     private static final int BAR_Y = 8;
@@ -66,7 +67,7 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         RenderSystem.setShaderTexture(0, GUI_TEXTURE);
 
-        int x = (this.width  - this.backgroundWidth)  / 2;
+        int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
 
         context.drawTexture(GUI_TEXTURE, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
@@ -76,7 +77,7 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
                 x + BAR_X,
                 y + BAR_Y,
                 0, 0,
-                BAR_WIDTH, BAR_HEIGHT);
+                BAR_WIDTH, BAR_TEXTURE_HEIGHT);
 
         ItemStack drillStack = this.handler.getSlot(0).getStack();
         if (drillStack.getItem() instanceof DrillItem) {
@@ -88,21 +89,44 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
             long capacity = hasMk1 ? 5_000L : 0L;
 
             if (capacity > 0 && currentEnergy > 0) {
-                double fillFrac = (double) currentEnergy / (double) capacity;
-                if (fillFrac < 0) fillFrac = 0;
-                if (fillFrac > 1) fillFrac = 1;
-                int filledHeight = (int) Math.round(fillFrac * BAR_HEIGHT);
-                int srcV      = BAR_HEIGHT - filledHeight;
-                int destY     = y + BAR_Y     + (BAR_HEIGHT - filledHeight);
+                double fillFrac = Math.max(0, Math.min(1, (double) currentEnergy / capacity));
 
-                RenderSystem.setShaderTexture(0, FULL);
-                context.drawTexture(FULL,
-                        x + BAR_X,
-                        destY,
-                        0,
-                        srcV,
-                        BAR_WIDTH,
-                        filledHeight);
+                // Draw the four sub‑bars from bottom to top
+                for (int i = 0; i < 4; i++) {
+                    int quarter = i + 1;
+                    double quarterStart = (quarter - 1) * 0.25;
+                    double quarterEnd = quarter * 0.25;
+
+                    // Only draw this sub‑bar if the energy amount reaches its start
+                    if (fillFrac <= quarterStart) continue;
+
+                    // How much of this sub‑bar is filled
+                    double barFill = Math.min(1, (fillFrac - quarterStart) / 0.25);
+
+                    // Height to render for this sub‑bar (scaled down to 16 px)
+                    int barRenderHeight = (int) Math.round(barFill * BAR_RENDER_HEIGHT);
+                    if (barRenderHeight == 0) continue;
+
+                    // Source Y in the 64‑pixel texture
+                    int srcY = BAR_TEXTURE_HEIGHT - (int) Math.round(barFill * BAR_TEXTURE_HEIGHT);
+
+                    // Destination Y: stack from bottom up
+                    int destY = y + BAR_Y + ((3 - i) * BAR_RENDER_HEIGHT)
+                            + (BAR_RENDER_HEIGHT - barRenderHeight);
+
+                    RenderSystem.setShaderTexture(0, FULL);
+                    context.drawTexture(
+                            FULL,
+                            x + BAR_X,          // dest X
+                            destY,              // dest Y
+                            0,                  // src X
+                            srcY,               // src Y
+                            BAR_WIDTH,          // dest width
+                            barRenderHeight,    // dest height (scaled)
+                            BAR_TEXTURE_HEIGHT, // texture width
+                            BAR_TEXTURE_HEIGHT  // texture height
+                    );
+                }
             }
         }
     }
