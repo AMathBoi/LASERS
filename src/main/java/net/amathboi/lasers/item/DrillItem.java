@@ -3,11 +3,13 @@ package net.amathboi.lasers.item;
 import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.energy.DrillEnergyStorage;
+import net.amathboi.lasers.item.client.DrillRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,10 +22,22 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.client.GeoRenderProvider;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-public class DrillItem extends PickaxeItem {
+public class DrillItem extends PickaxeItem implements GeoItem {
+
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
     public DrillItem(ModToolMaterials material, Settings settings) {
         super(material, settings);
     }
@@ -199,5 +213,39 @@ public class DrillItem extends PickaxeItem {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+
+    //Gecko lib stuff
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+        tAnimationState.getController().setAnimation(RawAnimation.begin().then("spin", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    public double getTick(Object itemStack) {
+        return RenderUtil.getCurrentTick();
+    }
+
+    @Override
+    public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
+        consumer.accept(new GeoRenderProvider() {
+            private final DrillRenderer renderer = new DrillRenderer();
+
+            @Override
+            public @Nullable BuiltinModelItemRenderer getGeoItemRenderer() {
+                return this.renderer;
+            }
+        });
     }
 }

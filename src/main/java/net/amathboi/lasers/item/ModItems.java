@@ -5,7 +5,10 @@ import net.amathboi.lasers.client.ModKeyBindings;
 import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -20,8 +23,8 @@ public class ModItems {
     public static final Item LASER_DRILL_MK1 = registerItem("laser_drill_mk1",
             new DrillItem(
                     ModToolMaterials.LASER_MK1,
-                    new Item.Settings().component(ModDataComponentTypes.DRILL_UPGRADES, List.<ItemStack>of()).attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.LASER_MK1,
-                                    1, -2.8f)).component(ModDataComponentTypes.BATTERY, 0L)));
+                    new Item.Settings().component(ModDataComponentTypes.DRILL_UPGRADES, List.of()).attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.LASER_MK1,
+                            1, -2.8f)).component(ModDataComponentTypes.BATTERY, 0L)));
 
     public static final Item BLANK_UPGRADE = registerItem("blank_upgrade", new Item(new Item.Settings()));
     public static final Item EFFICIENCY_UPGRADE = registerItem("efficiency_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.EFFICIENCY, UpgradeType.RED) {

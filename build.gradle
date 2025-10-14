@@ -21,6 +21,16 @@ repositories {
 	}
 }
 
+repositories {
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+}
+
 fabricApi {
 	configureDataGeneration {
 		client = true
@@ -36,13 +46,15 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Team Reborn Energy (standalone)
+    //Geckolib
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
+
+    // Team Reborn Energy (standalone)
 	modApi "teamreborn:energy:${project.energy_version}"
 	include "teamreborn:energy:${project.energy_version}"
 
 	implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.5"))
 	implementation(include("io.github.llamalad7:mixinextras-fabric:0.3.5"))
-
 }
 
 processResources {

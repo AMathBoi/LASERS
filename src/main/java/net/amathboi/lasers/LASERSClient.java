@@ -15,8 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 
 public class LASERSClient implements ClientModInitializer {
-    private static boolean wasKeyPressed = false;
-    
     @Override
     public void onInitializeClient() {
         ModKeyBindings.registerKeyBindings();

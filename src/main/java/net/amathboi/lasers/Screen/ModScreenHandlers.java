@@ -1,7 +1,7 @@
 package net.amathboi.lasers.Screen;
 
-import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.amathboi.lasers.LASERS;
+import net.amathboi.lasers.Screen.custom.LaserScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

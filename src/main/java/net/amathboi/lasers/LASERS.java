@@ -9,7 +9,6 @@ import net.amathboi.lasers.component.ModDataComponentTypes;
 import net.amathboi.lasers.item.*;
 import net.amathboi.lasers.util.ModTags;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -46,7 +45,7 @@ public class LASERS implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 
-		PlayerBlockBreakEvents.BEFORE.register((World world,
+        PlayerBlockBreakEvents.BEFORE.register((World world,
 												PlayerEntity player,
 												BlockPos pos,
 												BlockState state,
@@ -71,4 +70,3 @@ public class LASERS implements ModInitializer {
 		DrillEvents.register();
 	}
 }
-
