@@ -1,5 +1,3 @@
-(WIP) This mod adds laser drills to the game. A basic iron tier can be made and be upgraded to all the way up to netherite. Custom upgrades can be added to upgrade slots in the drill.
-
 ----alpha 0.1---- 
  - added drill, upgrades, and workstation
    - drill mk1, drills stuff
@@ -29,7 +27,7 @@
  - added info button
  - reverted energy storage mk1 to 5k FE (old drills will have 50k FE until used)
 
-----alpha 0.4---- (current)
+----alpha 0.4---- 
  - fixed bugs
    - no longer requires the full tech reborn mod
  - improved visuals
@@ -38,16 +36,23 @@
  - added functionality to sonar
  - added more upgrades
 
-----release 1.0----
+----release 1.0---- (current)
  - Drill
-   - Improve model
-   - Add animation
-   - Make laser beam better
+   - Improved model
+   - Added animation
+   - Added new smoke effect
  - Workstation
-   - Improve GUI
+   - Improved GUI
    - Reworked drill upgrade(upgrades immediately apply when inserted)
  - Upgrades
-   - Make sonar look better
+   - Made sonar red and play sound
+   - Fortune drops 2 netherite scrap to prevent duping
+ - Recipes
+   - Balanced crafting costs of most recipes 
  - Testing
-   - General bug testing
-   - Check compatibility with other mods/energy
+   - Should be compatible with any fabric 1.21 energy mods 
+
+----port 1.0----
+ - Neoforge 1.20.1
+ - Forge 1.20.1
+ - Fabric 1.20.1
