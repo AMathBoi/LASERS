@@ -6,25 +6,28 @@
       "item": "minecraft:blaze_rod"
     },
     "2": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:copper_ingot"
     },
     "3": {
       "item": "lasers:blank_upgrade"
     },
     "4":{
-      "item": "minecraft:diamond_block"
-    },
-    "5": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:glass"
     },
     "6": {
+      "item": "minecraft:diamond"
+    },
+    "5": {
       "item": "minecraft:netherite_ingot"
+    },
+    "7": {
+      "item": "minecraft:redstone_block"
     }
   },
   "pattern": [
     "212",
-    "535",
-    "646"
+    "534",
+    "676"
   ],
   "result": {
     "count": 1,

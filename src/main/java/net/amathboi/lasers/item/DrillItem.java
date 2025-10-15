@@ -89,14 +89,14 @@ public class DrillItem extends PickaxeItem implements GeoItem {
         long capacity = (determineCapacity(stack) / 1000);
 
         if (capacity > 0) {
-                MutableText energy = Text.literal(currentEnergy + "k/" + capacity + "k FE");
-                energy.setStyle(Style.EMPTY.withFormatting(Formatting.YELLOW));
-                tooltip.add(energy);
-            }
+            MutableText energy = Text.literal(currentEnergy + "k/" + capacity + "k FE");
+            energy.setStyle(Style.EMPTY.withFormatting(Formatting.YELLOW));
+            tooltip.add(energy);
+        }
 
 
         List<ItemStack> upgrades = stack.getOrDefault(ModDataComponentTypes.DRILL_UPGRADES, List.of());
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             if (!upgrades.isEmpty()) {
                 MutableText header = Text.translatable("tooltip.lasers.drill_upgrades");
                 header.setStyle(Style.EMPTY.withFormatting(Formatting.GRAY));
@@ -125,8 +125,8 @@ public class DrillItem extends PickaxeItem implements GeoItem {
                 }
             }
         } else {
-                tooltip.add(Text.translatable("tooltip.lasers.shift"));
-            }
+            tooltip.add(Text.translatable("tooltip.lasers.shift"));
+        }
     }
 
     @Override
@@ -215,11 +215,10 @@ public class DrillItem extends PickaxeItem implements GeoItem {
         super.inventoryTick(stack, world, entity, slot, selected);
     }
 
-
     //Gecko lib stuff
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-         controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {

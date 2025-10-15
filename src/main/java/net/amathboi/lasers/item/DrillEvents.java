@@ -5,12 +5,33 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 
 import java.util.List;
 
 public class DrillEvents {
     public static void register() {
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
+            if (world.isClient) return true;
+
+            ItemStack stack = player.getMainHandStack();
+            if (!(stack.getItem() instanceof DrillItem)) return true;
+            DrillItem drill = (DrillItem) stack.getItem();
+
+            if (!drill.hasFortuneUpgrade(stack)) return true;
+
+            if (isAncientDebris(state)) {
+                ItemStack scrapStack = new ItemStack(Items.NETHERITE_SCRAP, 2);
+                Block.dropStack(world, pos, scrapStack);
+
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                return false;
+            }
+
+            return true;
+        });
+
         PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
             if (world.isClient) return;
 
@@ -32,6 +53,7 @@ public class DrillEvents {
                 }
             }
         });
+
     }
 
     private static boolean isOreBlock(BlockState state) {
@@ -43,7 +65,10 @@ public class DrillEvents {
                 state.isOf(Blocks.DIAMOND_ORE) ||
                 state.isOf(Blocks.EMERALD_ORE) ||
                 state.isOf(Blocks.NETHER_QUARTZ_ORE) ||
-                state.isOf(Blocks.NETHER_GOLD_ORE) ||
-                state.isOf(Blocks.ANCIENT_DEBRIS);
+                state.isOf(Blocks.NETHER_GOLD_ORE);
+    }
+
+    private static boolean isAncientDebris(BlockState state) {
+     return state.isOf(Blocks.ANCIENT_DEBRIS);
     }
 }

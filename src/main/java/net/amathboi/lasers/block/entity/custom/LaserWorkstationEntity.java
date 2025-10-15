@@ -88,7 +88,7 @@ public class LaserWorkstationEntity extends BlockEntity implements ImplementedIn
             DrillEnergyStorage drillEnergy = new DrillEnergyStorage(drill);
 
             try (Transaction tx = Transaction.openOuter()) {
-                long pulled   = energyStorage.extract(1_000L, tx);
+                long pulled = energyStorage.extract(1_000L, tx);
                 long accepted = drillEnergy.insert(pulled, tx);
                 if (accepted > 0) tx.commit();
             }

@@ -10,10 +10,10 @@ public class ModKeyBindings {
 
     public static void registerKeyBindings() {
         sonarKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.lasers.sonar",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_Z,
-            "category.lasers.main"
+                "key.lasers.sonar",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_Z,
+                "category.lasers.main"
         ));
     }
 }

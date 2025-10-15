@@ -30,7 +30,7 @@ public class ModItems {
     public static final Item EFFICIENCY_UPGRADE = registerItem("efficiency_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.EFFICIENCY, UpgradeType.RED) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.efficiency_upgrade.shift_down"));
             } else {
                 tooltip.add(Text.translatable("tooltip.lasers.shift"));
@@ -41,7 +41,7 @@ public class ModItems {
     public static final Item ENERGY_STORAGE_MK1 = registerItem("energy_storage_mk1", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.BATTERY_MK1, UpgradeType.ENERGY) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.energy_storage_mk1.shift_down"));
             } else {
                 tooltip.add(Text.translatable("tooltip.lasers.shift"));
@@ -52,7 +52,7 @@ public class ModItems {
     public static final Item HARDNESS_UPGRADE = registerItem("hardness_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.HARDNESS, UpgradeType.GRAY) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.hardness_upgrade.shift_down"));
             } else {
                 tooltip.add(Text.translatable("tooltip.lasers.shift"));
@@ -63,7 +63,7 @@ public class ModItems {
     public static final Item HASTE_UPGRADE = registerItem("haste_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.HASTE, UpgradeType.YELLOW) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.haste_upgrade.shift_down"));
             } else {
                 tooltip.add(Text.translatable("tooltip.lasers.shift"));
@@ -74,7 +74,7 @@ public class ModItems {
     public static final Item SONAR_UPGRADE = registerItem("sonar_upgrade", new UpgradeItem(new Item.Settings().maxCount(1), UpgradeSpecific.SONAR, UpgradeType.BLUE) {
         @Override
         public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown()) {
                 tooltip.add(Text.translatable("tooltip.lasers.sonar_upgrade.shift_down"));
                 tooltip.add(Text.translatable("tooltip.lasers.sonar_upgrade.shift_down2"));
                 Text keyText = ModKeyBindings.sonarKey.getBoundKeyLocalizedText();

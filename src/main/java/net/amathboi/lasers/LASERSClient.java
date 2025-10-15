@@ -18,7 +18,7 @@ public class LASERSClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ModKeyBindings.registerKeyBindings();
-        
+
         HandledScreens.register(ModScreenHandlers.LASER_SCREEN_HANDLER, LaserScreen::new);
         ModScreenHandlers.registerScreenHandlers();
 

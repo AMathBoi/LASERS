@@ -10,6 +10,8 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -37,12 +39,15 @@ public class SonarEffect {
         lastScanTime = currentTime;
         effectStartTime = currentTime;
 
+        world.playSound(player, player.getBlockPos(), SoundEvents.BLOCK_BEACON_ACTIVATE,
+                SoundCategory.PLAYERS, 1.0F, 1.0F);
+
         foundOres.clear();
         BlockPos playerPos = player.getBlockPos();
 
-        for (int x = -RANGE/2; x <= RANGE/2; x++) {
-            for (int y = -RANGE/2; y <= RANGE/2; y++) {
-                for (int z = -RANGE/2; z <= RANGE/2; z++) {
+        for (int x = -RANGE / 2; x <= RANGE / 2; x++) {
+            for (int y = -RANGE / 2; y <= RANGE / 2; y++) {
+                for (int z = -RANGE / 2; z <= RANGE / 2; z++) {
                     BlockPos pos = playerPos.add(x, y, z);
                     BlockState state = world.getBlockState(pos);
 
@@ -116,10 +121,10 @@ public class SonarEffect {
                 int textWidth = textRenderer.getWidth(name);
 
                 context.drawTextWithShadow(textRenderer, Text.literal(name),
-                        (int)(screenX - textWidth / 2.0), (int)screenY - 20, 0xFFFFFF);
+                        (int) (screenX - textWidth / 2.0), (int) screenY - 20, 0xFFFFFF);
 
-                context.fill((int)screenX - 2, (int)screenY - 2,
-                        (int)screenX + 2, (int)screenY + 2, 0xFFFFFF00);
+                context.fill((int) screenX - 2, (int) screenY - 2,
+                        (int) screenX + 2, (int) screenY + 2, 0xFFFF0000);
             }
         }
 

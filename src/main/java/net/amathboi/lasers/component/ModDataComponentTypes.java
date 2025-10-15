@@ -20,11 +20,11 @@ public class ModDataComponentTypes {
     );
 
     public static final ComponentType<Long> BATTERY = register(
-      "battery",
-      longBuilder -> longBuilder.codec(Codec.LONG)
+            "battery",
+            longBuilder -> longBuilder.codec(Codec.LONG)
     );
 
-    private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
+    private static <T> ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(LASERS.MOD_ID, name), builderOperator.apply(ComponentType.builder()).build());
     }
 

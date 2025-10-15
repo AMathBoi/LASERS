@@ -40,9 +40,9 @@ public class LaserWorkstation extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(state.getBlock() != newState.getBlock()) {
+        if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if(blockEntity instanceof LaserWorkstationEntity) {
+            if (blockEntity instanceof LaserWorkstationEntity) {
                 ItemScatterer.spawn(world, pos, ((LaserWorkstationEntity) blockEntity));
                 world.updateComparators(pos, this);
             }
@@ -52,7 +52,7 @@ public class LaserWorkstation extends BlockWithEntity implements BlockEntityProv
 
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.getBlockEntity(pos) instanceof LaserWorkstationEntity laserWorkstationEntity) {
+        if (world.getBlockEntity(pos) instanceof LaserWorkstationEntity laserWorkstationEntity) {
             if (!world.isClient()) {
                 player.openHandledScreen(laserWorkstationEntity);
             }

@@ -148,7 +148,7 @@ public class LaserScreenHandler extends ScreenHandler {
             public void setStack(ItemStack stack) {
                 ItemStack oldStack = this.getStack().copy();
                 super.setStack(stack);
-                
+
                 // If the stack changed (either inserted or removed an upgrade)
                 if (!ItemStack.areEqual(oldStack, stack)) {
                     updateDrillUpgrades();
@@ -193,7 +193,7 @@ public class LaserScreenHandler extends ScreenHandler {
             }
             slot.onQuickTransfer(sourceStack, itemStack);
             updateDrillUpgrades(); // Update drill's NBT after removing upgrade
-        } 
+        }
         // If clicking on drill slot (0)
         else if (index == 0) {
             // Clear upgrades first
@@ -220,7 +220,7 @@ public class LaserScreenHandler extends ScreenHandler {
                 if (slotIndex > 0 && !this.insertItem(sourceStack, slotIndex, slotIndex + 1, false)) {
                     return ItemStack.EMPTY;
                 }
-                updateDrillUpgrades(); // Update drill's NBT after adding upgrade
+                updateDrillUpgrades();
             }
             // For other items, try to insert into hotbar or main inventory
             else {

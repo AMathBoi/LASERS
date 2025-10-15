@@ -12,7 +12,7 @@
       "item": "lasers:blank_upgrade"
     },
     "4":{
-      "item": "minecraft:diamond_block"
+      "item": "minecraft:emerald_block"
     },
     "5": {
       "item": "minecraft:diamond"
@@ -28,6 +28,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "lasers:sonar_upgrade"
+    "id": "lasers:fortune_upgrade"
   }
 }

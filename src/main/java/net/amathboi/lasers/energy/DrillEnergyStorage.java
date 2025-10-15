@@ -10,14 +10,14 @@ import team.reborn.energy.api.base.SimpleEnergyStorage;
 public class DrillEnergyStorage extends SimpleEnergyStorage {
     private final ItemStack stack;
 
-    private static final long BASE_CAPACITY   = 0L;
-    private static final long UPGRADED_MK1    = 5_000L;
-    private static final long MAX_INSERT      = 1_000L;
-    private static final long MAX_EXTRACT     = 1_000L;   // ← allow extraction
+    private static final long BASE_CAPACITY = 0L;
+    private static final long UPGRADED_MK1 = 5_000L;
+    private static final long MAX_INSERT = 1_000L;
+    private static final long MAX_EXTRACT = 1_000L;   // ← allow extraction
 
     public DrillEnergyStorage(ItemStack stack) {
         super(determineCapacity(stack), MAX_INSERT, MAX_EXTRACT);
-        this.stack  = stack;
+        this.stack = stack;
         this.amount = Math.min(getStoredEnergy(stack), capacity);
     }
 

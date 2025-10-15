@@ -21,13 +21,13 @@ import java.util.List;
 public class LaserScreen extends HandledScreen<LaserScreenHandler> {
 
     public static final Identifier GUI_TEXTURE = Identifier.of(LASERS.MOD_ID, "textures/gui/lasers/laser_workstation_gui.png");
-    public static final Identifier EMPTY       = Identifier.of(LASERS.MOD_ID, "textures/gui/lasers/empty_bar.png");
-    public static final Identifier FULL        = Identifier.of(LASERS.MOD_ID, "textures/gui/lasers/full_bar.png");
+    public static final Identifier EMPTY = Identifier.of(LASERS.MOD_ID, "textures/gui/lasers/empty_bar.png");
+    public static final Identifier FULL = Identifier.of(LASERS.MOD_ID, "textures/gui/lasers/full_bar.png");
 
-    private static final int BACKGROUND_WIDTH  = 176;
+    private static final int BACKGROUND_WIDTH = 176;
     private static final int BACKGROUND_HEIGHT = 166;
 
-    private static final int BAR_WIDTH  = 5;
+    private static final int BAR_WIDTH = 5;
     private static final int BAR_TEXTURE_HEIGHT = 64;
     private static final int BAR_RENDER_HEIGHT = 16;
 
@@ -46,18 +46,16 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
     private static final List<Text> INFO_TEXT = List.of(
             Text.literal("§6§lLaser Workstation Guide"),
             Text.literal("1. Place drill in the middle slot"),
-            Text.literal("2. Add battery(required)"),
+            Text.literal("2. Add battery (required)"),
             Text.literal("3. Add Upgrades"),
-            Text.literal("4. Connect to energy source"),
-            Text.literal(""),
-            Text.literal("§7Click the ? to close")
+            Text.literal("4. Connect to energy source")
     );
 
     private static final float TEXT_SCALE = 0.75f;
 
     public LaserScreen(LaserScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-        this.backgroundWidth  = BACKGROUND_WIDTH;
+        this.backgroundWidth = BACKGROUND_WIDTH;
         this.backgroundHeight = BACKGROUND_HEIGHT;
     }
 
@@ -148,7 +146,7 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
             context.drawCenteredTextWithShadow(
                     this.textRenderer,
                     "?",
-                    buttonX + INFO_BUTTON_SIZE/2,
+                    buttonX + INFO_BUTTON_SIZE / 2,
                     buttonY + (INFO_BUTTON_SIZE - this.textRenderer.fontHeight) / 2,
                     0x000000
             );
@@ -159,7 +157,7 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
             int buttonY = this.infoButton.getY();
             int panelX = buttonX + INFO_BUTTON_SIZE - INFO_PANEL_WIDTH;  // Align right edge with button
             int panelY = buttonY + INFO_BUTTON_SIZE;
-            int panelHeight = (int)((INFO_TEXT.size() * LINE_HEIGHT * TEXT_SCALE) + (2 * INFO_PANEL_PADDING));
+            int panelHeight = (int) ((INFO_TEXT.size() * LINE_HEIGHT * TEXT_SCALE) + (2 * INFO_PANEL_PADDING));
 
             panelX = Math.max(panelX, 5);
 
@@ -184,8 +182,8 @@ public class LaserScreen extends HandledScreen<LaserScreenHandler> {
                 context.drawTextWithShadow(
                         this.textRenderer,
                         INFO_TEXT.get(i),
-                        (int)xPos,
-                        (int)yPos,
+                        (int) xPos,
+                        (int) yPos,
                         0xFFFFFF
                 );
                 context.getMatrices().pop();
